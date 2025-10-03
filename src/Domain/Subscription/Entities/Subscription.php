@@ -35,7 +35,8 @@ final class Subscription
         private ?string $cancelReason,
         private DateTimeImmutable $createdAt,
         private DateTimeImmutable $updatedAt
-    ) {}
+    ) {
+    }
 
     public static function create(
         string $id,
@@ -119,7 +120,7 @@ final class Subscription
         $this->paymentStatus = PaymentStatus::PAID;
         $this->lastChargeAt = $paidAt;
         $this->retryCount = 0;
-        
+
         if ($this->newPlanId !== null) {
             $this->planId = $this->newPlanId;
             $this->newPlanId = null;
@@ -224,7 +225,7 @@ final class Subscription
 
     public function needsRenewal(DateTimeImmutable $currentDate): bool
     {
-        return !$this->currentCycle->isActive($currentDate) 
+        return !$this->currentCycle->isActive($currentDate)
             && $this->status->canBeCharged();
     }
 

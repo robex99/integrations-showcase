@@ -14,5 +14,6 @@ final readonly class CardResult
         public int $expirationMonth,
         public int $expirationYear,
         public ?string $issuerId = null
-    ) {}
+    ) {
+    }
 }

@@ -23,7 +23,7 @@ final class EloquentPlanRepository implements PlanRepositoryInterface
     public function findById(string $id): ?Plan
     {
         $eloquent = EloquentPlan::find($id);
-        
+
         if ($eloquent === null) {
             return null;
         }
@@ -36,7 +36,7 @@ final class EloquentPlanRepository implements PlanRepositoryInterface
         $eloquentPlans = EloquentPlan::where('status', 'active')->get();
 
         return array_map(
-            fn($eloquent) => $this->toDomain($eloquent),
+            fn ($eloquent) => $this->toDomain($eloquent),
             $eloquentPlans->all()
         );
     }

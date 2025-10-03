@@ -18,7 +18,8 @@ final class ChangeCreditCardUseCase
         private readonly SubscriptionRepositoryInterface $subscriptionRepository,
         private readonly PaymentGatewayInterface $paymentGateway,
         private readonly CardStorageService $cardStorageService
-    ) {}
+    ) {
+    }
 
     public function execute(ChangeCreditCardDTO $dto): ChangeCreditCardResult
     {

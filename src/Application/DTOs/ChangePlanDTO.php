@@ -16,7 +16,8 @@ final readonly class ChangePlanDTO
         public ?int $expiryMonth = null,
         public ?int $expiryYear = null,
         public ?string $cvv = null
-    ) {}
+    ) {
+    }
 
     public function hasNewCard(): bool
     {

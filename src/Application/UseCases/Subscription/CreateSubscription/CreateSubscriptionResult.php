@@ -10,7 +10,8 @@ final readonly class CreateSubscriptionResult
         public bool $success,
         public ?string $subscriptionId,
         public ?string $errorMessage
-    ) {}
+    ) {
+    }
 
     public static function success(string $subscriptionId): self
     {

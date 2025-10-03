@@ -14,5 +14,6 @@ final readonly class CustomerData
         public string $documentNumber,
         public string $phoneAreaCode,
         public string $phoneNumber
-    ) {}
+    ) {
+    }
 }

@@ -13,7 +13,8 @@ final class MercadoPagoHttpClient
     public function __construct(
         private readonly string $accessToken,
         private readonly string $platformId
-    ) {}
+    ) {
+    }
 
     public function post(string $endpoint, array $payload): object
     {

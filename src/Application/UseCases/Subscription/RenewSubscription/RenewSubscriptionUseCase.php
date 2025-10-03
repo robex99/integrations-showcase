@@ -24,7 +24,8 @@ final class RenewSubscriptionUseCase
         private readonly PaymentGatewayInterface $paymentGateway,
         private readonly NotificationServiceInterface $notificationService,
         private readonly UsageBasedChargeCalculator $chargeCalculator
-    ) {}
+    ) {
+    }
 
     public function execute(string $subscriptionId): RenewSubscriptionResult
     {
@@ -33,8 +34,8 @@ final class RenewSubscriptionUseCase
             throw SubscriptionNotFoundException::withId($subscriptionId);
         }
 
-        $planId = $subscription->hasPendingPlanChange() 
-            ? $subscription->newPlanId() 
+        $planId = $subscription->hasPendingPlanChange()
+            ? $subscription->newPlanId()
             : $subscription->planId();
 
         $plan = $this->planRepository->findById($planId);
@@ -76,7 +77,7 @@ final class RenewSubscriptionUseCase
 
             if ($paymentResult->success) {
                 $now = new DateTimeImmutable();
-                
+
                 $invoice->markAsApproved($paymentResult->transactionId);
                 $this->invoiceRepository->save($invoice);
 

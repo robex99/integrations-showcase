@@ -16,5 +16,6 @@ final readonly class CreateSubscriptionDTO
         public int $expiryMonth,
         public int $expiryYear,
         public string $cvv
-    ) {}
+    ) {
+    }
 }

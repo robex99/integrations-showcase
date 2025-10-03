@@ -15,5 +15,6 @@ final readonly class ChangeCreditCardDTO
         public int $expiryMonth,
         public int $expiryYear,
         public string $cvv
-    ) {}
+    ) {
+    }
 }

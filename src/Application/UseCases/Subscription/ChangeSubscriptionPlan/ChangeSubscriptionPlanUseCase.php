@@ -33,7 +33,8 @@ final class ChangeSubscriptionPlanUseCase
         private readonly PlanChangeEvaluator $planChangeEvaluator,
         private readonly ProrationCalculator $prorationCalculator,
         private readonly CardStorageService $cardStorageService
-    ) {}
+    ) {
+    }
 
     public function execute(ChangePlanDTO $dto): ChangeSubscriptionPlanResult
     {

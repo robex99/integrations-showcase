@@ -10,7 +10,8 @@ final class DiscordNotificationService implements NotificationServiceInterface
 {
     public function __construct(
         private readonly string $webhookUrl
-    ) {}
+    ) {
+    }
 
     public function sendNewSubscriptionNotification(array $data): void
     {

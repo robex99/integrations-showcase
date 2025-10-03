@@ -33,7 +33,7 @@ final class ProrationCalculator
         $remainingCredit = $currentPlan->price()->subtract($usedAmount);
 
         $newPlanProportionalCost = $newDailyRate->multiply($remainingDays);
-        
+
         return $newPlanProportionalCost->subtract($remainingCredit);
     }
 

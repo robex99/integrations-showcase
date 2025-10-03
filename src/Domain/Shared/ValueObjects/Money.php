@@ -67,7 +67,7 @@ final readonly class Money
 
     public function equals(self $other): bool
     {
-        return $this->amountInCents === $other->amountInCents 
+        return $this->amountInCents === $other->amountInCents
             && $this->currency === $other->currency;
     }
 

@@ -11,7 +11,8 @@ final readonly class MercadoPagoConfig
         public string $accessToken,
         public string $platformId,
         public string $webhookUrl
-    ) {}
+    ) {
+    }
 
     public static function fromArray(array $config): self
     {

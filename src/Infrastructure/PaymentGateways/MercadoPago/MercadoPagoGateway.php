@@ -20,7 +20,8 @@ final class MercadoPagoGateway implements PaymentGatewayInterface
     public function __construct(
         private readonly MercadoPagoHttpClient $httpClient,
         private readonly PaymentRequestMapper $paymentMapper
-    ) {}
+    ) {
+    }
 
     public function createCustomer(CustomerData $customerData): CustomerResult
     {
@@ -39,7 +40,7 @@ final class MercadoPagoGateway implements PaymentGatewayInterface
         ];
 
         $response = $this->httpClient->post('/v1/customers', $payload);
-        
+
         return new CustomerResult(
             customerId: $response->id,
             email: $response->email
@@ -49,7 +50,7 @@ final class MercadoPagoGateway implements PaymentGatewayInterface
     public function createCard(string $customerId, CardData $cardData): CardResult
     {
         $existingCards = $this->getCustomerCards($customerId);
-        
+
         $existingCard = $this->findMatchingCard($existingCards, $cardData);
         if ($existingCard !== null) {
             return $existingCard;

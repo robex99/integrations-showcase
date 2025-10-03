@@ -16,11 +16,11 @@ final readonly class Document
         private DocumentType $type
     ) {
         $cleanNumber = preg_replace('/[^0-9]/', '', $number);
-        
+
         if ($type === DocumentType::CPF && strlen($cleanNumber) !== self::CPF_LENGTH) {
             throw new InvalidArgumentException('Invalid CPF length');
         }
-        
+
         if ($type === DocumentType::CNPJ && strlen($cleanNumber) !== self::CNPJ_LENGTH) {
             throw new InvalidArgumentException('Invalid CNPJ length');
         }

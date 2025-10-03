@@ -9,7 +9,8 @@ final readonly class ChangeCreditCardResult
     private function __construct(
         public bool $success,
         public ?string $errorMessage
-    ) {}
+    ) {
+    }
 
     public static function success(): self
     {

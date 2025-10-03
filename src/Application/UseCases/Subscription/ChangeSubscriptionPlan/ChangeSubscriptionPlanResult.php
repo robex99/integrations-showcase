@@ -10,7 +10,8 @@ final readonly class ChangeSubscriptionPlanResult
         public bool $success,
         public bool $immediate,
         public ?string $message
-    ) {}
+    ) {
+    }
 
     public static function immediate(): self
     {

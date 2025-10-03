@@ -30,7 +30,8 @@ final class CreateSubscriptionUseCase
         private readonly PaymentGatewayInterface $paymentGateway,
         private readonly NotificationServiceInterface $notificationService,
         private readonly CardStorageService $cardStorageService
-    ) {}
+    ) {
+    }
 
     public function execute(CreateSubscriptionDTO $dto): CreateSubscriptionResult
     {
@@ -50,7 +51,7 @@ final class CreateSubscriptionUseCase
 
         try {
             $document = Document::fromString($dto->cpfCnpj);
-            
+
             $customerData = new CustomerData(
                 email: "user_{$dto->userId}@testuser.com",
                 firstName: $this->extractFirstName($dto->cardholderName),

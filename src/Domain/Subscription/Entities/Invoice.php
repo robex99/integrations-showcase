@@ -23,7 +23,8 @@ final class Invoice
         private ?string $statusReason,
         private DateTimeImmutable $createdAt,
         private DateTimeImmutable $updatedAt
-    ) {}
+    ) {
+    }
 
     public static function create(
         string $id,

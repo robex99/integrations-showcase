@@ -9,10 +9,10 @@ use PaymentIntegrations\Domain\Subscription\Entities\Invoice;
 interface InvoiceRepositoryInterface
 {
     public function nextIdentity(): string;
-    
+
     public function save(Invoice $invoice): void;
-    
+
     public function findById(string $id): ?Invoice;
-    
+
     public function findByUserId(int $userId): array;
 }

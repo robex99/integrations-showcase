@@ -13,7 +13,8 @@ final class CancelSubscriptionUseCase
     public function __construct(
         private readonly SubscriptionRepositoryInterface $subscriptionRepository,
         private readonly NotificationServiceInterface $notificationService
-    ) {}
+    ) {
+    }
 
     public function execute(int $userId, string $reason): CancelSubscriptionResult
     {

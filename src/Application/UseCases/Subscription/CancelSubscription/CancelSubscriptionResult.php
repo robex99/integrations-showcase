@@ -9,7 +9,8 @@ final readonly class CancelSubscriptionResult
     private function __construct(
         public bool $success,
         public ?string $errorMessage
-    ) {}
+    ) {
+    }
 
     public static function success(): self
     {

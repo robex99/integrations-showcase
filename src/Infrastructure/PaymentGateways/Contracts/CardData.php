@@ -13,5 +13,6 @@ final readonly class CardData
         public int $expirationMonth,
         public int $expirationYear,
         public string $securityCode
-    ) {}
+    ) {
+    }
 }

@@ -19,7 +19,7 @@ final class EloquentSubscriptionRepository implements SubscriptionRepositoryInte
     public function findById(string $id): ?Subscription
     {
         $eloquent = EloquentSubscription::find($id);
-        
+
         if ($eloquent === null) {
             return null;
         }
@@ -30,7 +30,7 @@ final class EloquentSubscriptionRepository implements SubscriptionRepositoryInte
     public function findByUserId(int $userId): ?Subscription
     {
         $eloquent = EloquentSubscription::where('user_id', $userId)->first();
-        
+
         if ($eloquent === null) {
             return null;
         }
@@ -74,7 +74,7 @@ final class EloquentSubscriptionRepository implements SubscriptionRepositoryInte
             ->get();
 
         return array_map(
-            fn($eloquent) => $this->toDomain($eloquent),
+            fn ($eloquent) => $this->toDomain($eloquent),
             $eloquentSubscriptions->all()
         );
     }

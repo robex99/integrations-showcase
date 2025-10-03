@@ -16,5 +16,6 @@ final readonly class PaymentData
         public ?string $subscriptionId = null,
         public ?int $sequenceNumber = null,
         public ?string $firstPaymentId = null
-    ) {}
+    ) {
+    }
 }

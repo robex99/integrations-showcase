@@ -12,7 +12,8 @@ final readonly class PaymentResult
         public string $status,
         public ?string $statusDetail = null,
         public ?string $errorMessage = null
-    ) {}
+    ) {
+    }
 
     public static function success(string $transactionId): self
     {

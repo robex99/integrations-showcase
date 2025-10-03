@@ -42,7 +42,7 @@ final class EloquentInvoiceRepository implements InvoiceRepositoryInterface
     public function findById(string $id): ?Invoice
     {
         $eloquent = EloquentInvoice::find($id);
-        
+
         if ($eloquent === null) {
             return null;
         }
@@ -57,7 +57,7 @@ final class EloquentInvoiceRepository implements InvoiceRepositoryInterface
             ->get();
 
         return array_map(
-            fn($eloquent) => $this->toDomain($eloquent),
+            fn ($eloquent) => $this->toDomain($eloquent),
             $eloquentInvoices->all()
         );
     }

@@ -9,6 +9,6 @@ use PaymentIntegrations\Domain\Subscription\Entities\Plan;
 interface PlanRepositoryInterface
 {
     public function findById(string $id): ?Plan;
-    
+
     public function findAllActive(): array;
 }

@@ -16,7 +16,7 @@ final class EloquentUsageCalculator implements UsageBasedChargeCalculator
         //     ->whereBetween('created_at', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
         //     ->where('status', 'APPROVED')
         //     ->count();
-        
+
         return 0; // Placeholder for showcase
     }
 }

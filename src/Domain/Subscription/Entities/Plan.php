@@ -17,7 +17,8 @@ final readonly class Plan
         private BillingPeriod $billingPeriod,
         private Money $extraOrderCharge,
         private bool $isActive
-    ) {}
+    ) {
+    }
 
     public static function create(
         string $id,
