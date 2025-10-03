@@ -3,7 +3,7 @@
 > Clean Architecture implementation of payment gateway integrations with a focus on subscription management.
 
 **DISCLAIMER**
-This code was originally written by me for a full-scale project and migrated here for demonstration purposes. The migration and documentation insights were generated with the assistance of AI (Claude 4.5 Sonnet) and reviewed by myself.
+This code was originally written by me for a full-scale project and migrated here for demonstration purposes. Parts of the migration and documentation insights were generated with the assistance of AI (Claude 4.5 Sonnet) and reviewed by myself.
 ---
 
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D8.2-blue)](https://www.php.net/)
