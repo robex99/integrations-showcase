@@ -9,12 +9,15 @@ use PaymentIntegrations\Application\DTOs\CreateSubscriptionDTO;
 use PaymentIntegrations\Domain\Shared\ValueObjects\Document;
 use PaymentIntegrations\Domain\Shared\ValueObjects\Email;
 use PaymentIntegrations\Domain\Subscription\Entities\Invoice;
+use PaymentIntegrations\Domain\Subscription\Entities\Plan;       
 use PaymentIntegrations\Domain\Subscription\Entities\Subscription;
 use PaymentIntegrations\Domain\Subscription\Exceptions\PlanNotFoundException;
 use PaymentIntegrations\Domain\Subscription\Repositories\InvoiceRepositoryInterface;
 use PaymentIntegrations\Domain\Subscription\Repositories\PlanRepositoryInterface;
 use PaymentIntegrations\Domain\Subscription\Repositories\SubscriptionRepositoryInterface;
 use PaymentIntegrations\Domain\Subscription\ValueObjects\CreditCard;
+use PaymentIntegrations\Infrastructure\Invoicing\Contracts\FiscalDocumentData;    
+use PaymentIntegrations\Infrastructure\Invoicing\Spedy\SpedyFiscalDocumentService;
 use PaymentIntegrations\Infrastructure\Notifications\Contracts\NotificationServiceInterface;
 use PaymentIntegrations\Infrastructure\PaymentGateways\Contracts\CardData;
 use PaymentIntegrations\Infrastructure\PaymentGateways\Contracts\CustomerData;
@@ -116,6 +119,8 @@ final class CreateSubscriptionUseCase
                 $subscription->recordSuccessfulPayment($paymentResult->transactionId, new DateTimeImmutable());
                 $this->subscriptionRepository->save($subscription);
 
+                $this->issueFiscalDocument($subscription, $plan, $invoice, $paymentResult->transactionId);
+
                 $this->notificationService->sendNewSubscriptionNotification([
                     'user_id' => $dto->userId,
                     'plan_name' => $plan->name(),
@@ -150,6 +155,44 @@ final class CreateSubscriptionUseCase
             ]);
 
             return CreateSubscriptionResult::failure($e->getMessage());
+        }
+    }
+
+    private function issueFiscalDocument(
+        Subscription $subscription,
+        Plan $plan,
+        Invoice $invoice,
+        string $transactionId
+    ): void {
+        try {
+            $fiscalData = new FiscalDocumentData(
+                transactionId: $transactionId,
+                customerName: 'Customer Name',
+                customerEmail: 'customer@email.com',
+                customerDocument: '62887357018',
+                customerStreet: null,
+                customerDistrict: null,
+                customerPostalCode: null,
+                customerNumber: null,
+                customerCity: null,
+                customerState: 'SP',
+                amountInCents: $plan->price()->amountInCents(),
+                itemDescription: "Assinatura - {$plan->name()}",
+                itemCode: "PLAN-{$plan->id()}",
+                sendEmailToCustomer: true
+            );
+
+            $spedyService = new SpedyFiscalDocumentService(
+                apiKey: '14c37a1a-d12f-4fff-ffff-cfffffffff'
+            );
+
+            $result = $spedyService->issueDocument($fiscalData);
+
+            if (!$result->success) {
+                error_log("Failed to issue fiscal document: {$result->errorMessage}");
+            }
+        } catch (\Exception $e) {
+            error_log("Exception issuing fiscal document: {$e->getMessage()}");
         }
     }
 
