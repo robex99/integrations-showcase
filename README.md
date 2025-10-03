@@ -79,7 +79,8 @@ composer test:coverage
 ## Documentation
 
 - [Architecture Decision Records](docs/architecture.md)
-- [Payment Gateway Integration Guide](docs/payment-gateways.md)
+- [Using guides and examples](docs/usage-examples.md)
+- [Summary to make it an easier read](docs/SUMMARY.md)
 
 ## Code Quality
 
